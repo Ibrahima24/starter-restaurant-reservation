@@ -7,6 +7,8 @@ import { today } from "../utils/date-time";
 import NewReservationsComponent from "../newReservations/NewReservationsComponent";
 import NewTable from "../tables/NewTable";
 import SeatComponent from "../newReservations/SeatComponent";
+import SearchComponent from "../newReservations/SearchComponent"
+import EditReservationsComponent from "../newReservations/EditReservationsComponent";
 import useQuery from "../utils/useQuery";
 
 /**
@@ -19,7 +21,7 @@ import useQuery from "../utils/useQuery";
 function Routes() {
   const query = useQuery()
   const date = query.get("date") || today()
-  console.log("stuff", query, date, today())
+  
   return (
     <Switch>
       <Route exact={true} path="/">
@@ -39,6 +41,12 @@ function Routes() {
       </Route>
       <Route path="/tables/new">
         <NewTable />
+      </Route>
+      <Route path="/search">
+        <SearchComponent/>
+      </Route>
+      <Route path="/reservations/:reservation_id/edit">
+        <EditReservationsComponent />
       </Route>
       <Route>
         <NotFound />

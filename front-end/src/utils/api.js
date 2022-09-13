@@ -104,6 +104,30 @@
    };
    return await fetchJson(url, options);
  }
+ export async function updateResId(tableId, reservation_id, signal) {
+  const url = `${API_BASE_URL}/tables/${tableId}/seat`;
+  const options = {
+    method: "DELETE",
+    headers,
+    body: JSON.stringify({ data: {reservation_id: reservation_id } }),
+    signal,
+  };
+  return await fetchJson(url, options, {});
+}
 
+export async function updateResStatus( reservation_Id, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_Id}/status`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: {status: 'cancelled'} }),
+    signal,
+  };
+  let result = await fetchJson(url, options, {});
+  return result
+}
 
-
+export async function editRes( resId, signal ) {
+  const url = new URL(`${API_BASE_URL}/reservations/${resId}`);
+  return await fetchJson(url, { headers, signal }, [])
+}

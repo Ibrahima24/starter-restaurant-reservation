@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import ErrorAlert from "../layout/ErrorAlert";
 import { listTables, updateTable } from "../utils/api";
 
 export default function SeatComponent(){
@@ -10,8 +11,6 @@ const [tables, setTables] = useState([]);
 
 let params = useParams();
 let reservation_id = params.reservation_id;
-
-console.log(tables)
 
     useEffect(loadTables, []);
     function loadTables() {
@@ -50,8 +49,6 @@ console.log(tables)
         }
     };
 
-console.log("tableId", tableId)
-
 
     return (
         <form onSubmit={submitHandler}>
@@ -61,6 +58,7 @@ console.log("tableId", tableId)
             <button type="submit">Submit</button>
             <button type="button" onClick={() => history.go(-1)}
             >Cancel</button>
+            <ErrorAlert error={tablesError} />
         </form>
     )
 }
