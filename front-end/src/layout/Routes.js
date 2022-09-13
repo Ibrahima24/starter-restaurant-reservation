@@ -5,6 +5,8 @@ import Dashboard from "../dashboard/Dashboard";
 import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
 import NewReservationsComponent from "../newReservations/NewReservationsComponent";
+import NewTable from "../tables/NewTable";
+import SeatComponent from "../newReservations/SeatComponent";
 import useQuery from "../utils/useQuery";
 
 /**
@@ -31,6 +33,12 @@ function Routes() {
       </Route>
       <Route path="/reservations/new">
         <NewReservationsComponent />
+      </Route>
+      <Route path="/reservations/:reservation_id/seat">
+        <SeatComponent />
+      </Route>
+      <Route path="/tables/new">
+        <NewTable />
       </Route>
       <Route>
         <NotFound />
