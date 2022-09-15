@@ -6,6 +6,7 @@ import ListTables from "./ListTables";
 import useQuery from "../utils/useQuery";
 import { today, next, previous } from "../utils/date-time";
 import { useHistory } from "react-router-dom"
+import moment from "moment";
 
 /**
  * Defines the dashboard page.
@@ -42,9 +43,9 @@ function Dashboard() {
 
   return (
     <main>
-      <h1>Dashboard</h1>
+      <h2>Dashboard</h2>
       <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for date</h4>
+        <h4 className="mb-0">Reservations for {moment(date).format("ddd MMMM Do, YYYY")}</h4>
       </div>
       <div>
       {reservations.length !== 0 ? (
@@ -54,9 +55,9 @@ function Dashboard() {
           `There are no reservations today`
         )}
         </div>
-      <button onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>Previous</button>
-      <button onClick={() => history.push(`/dashboard?date=${today()}`)}>Today</button>
-      <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
+      <button className="btn btn-secondary" onClick={() => history.push(`/dashboard?date=${previous(date)}`)}>Previous</button>
+      <button className="btn btn-primary ml-1" onClick={() => history.push(`/dashboard?date=${today()}`)}>Today</button>
+      <button className="btn btn-warning ml-1" onClick={() => history.push(`/dashboard?date=${next(date)}`)}>Next</button>
       <ListTables tables={tables} loadTables={loadTables} loadDashboard={loadDashboard}/>
       <ErrorAlert error={reservationsError} />
     </main>

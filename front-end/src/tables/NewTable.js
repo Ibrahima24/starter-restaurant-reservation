@@ -33,29 +33,36 @@ export default function NewTable(){
 
 
     return (
+        <div>
+        <h2>Create Table</h2>
         <form onSubmit={submitHandler}>
-            <div>
+            <div className="form-group">
+            <label htmlFor="table_name">Table Name</label>
             <input 
             name="table_name"
             type="string"
             value={newTable.table_name}
-            placeholder="Table Name"
+            className="form-control"
+            placeholder="#3"
             onChange={onChange}
             />
             </div>
-            <div>
+            <div className="form-group">
+            <label htmlFor="capacity">Capacity</label>
             <input 
             name="capacity"
             type="number"
             value={newTable.capacity}
-            placeholder="Capacity"
+            className="form-control"
+            placeholder="Party Size"
             onChange={onChange}
             />
             </div>  
-            <button type="submit">Submit</button>          
-            <button type="button" onClick={() => history.go(-1)}
+            <button type="submit" className="btn btn-primary">Submit</button>          
+            <button type="button" className="btn btn-secondary ml-1" onClick={() => history.go(-1)}
             >Cancel</button>     
             <ErrorAlert error={errors}/>     
-        </form> 
+        </form>
+        </div> 
 )
 }

@@ -15,16 +15,20 @@ export default function ListTables({tables, loadTables, loadDashboard }){
 
     const list = tables.map((table) => {
         return (
-            <div key={table.table_id}>
-            <p>{table.table_name}</p>
-            <p>{table.table_id}</p>
-            <p>{table.table_capacity}</p>
+            <div className="card" key={table.table_id}>
+            <div className="card-body">
+            <h5 className="card-title">Table: {table.table_name}</h5>
+            {/* <p>{table.table_id}</p> */}
+            <p className="card-text">Capacity: {table.capacity}</p>
             <p><span data-table-id-status={table.table_id}>
-                {table.reservation_id ? 'Occupied' : 'Free'}
+                Status: {table.reservation_id ? 'Occupied' : 'Free'}
             </span></p>
             {table.reservation_id ? <button value={table.table_id} 
-            data-table-id-finish={table.table_id} 
+            data-table-id-finish={table.table_id}
+            type="button"
+            className="btn btn-danger" 
             onClick={clickHandler}>Finish</button> : null}
+            </div>
             </div>
         )
     })

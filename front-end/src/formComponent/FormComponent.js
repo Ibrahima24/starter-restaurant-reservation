@@ -9,8 +9,9 @@ export default function FormComponent({
   submitHandler,
 }) {
    
-  const [formData, setFormData] = useState(newReservation);
   const history = useHistory();
+  const [formData, setFormData] = useState(newReservation);
+  
 
   useEffect(() => {
     setFormData({
@@ -28,68 +29,88 @@ export default function FormComponent({
   };
 
   return (
-    <>
-      <form onSubmit={(event) => submitHandler(event, formData)}>
-        <div>
+    <div>
+      <h2>Edit Your Table</h2>
+      <form name="edit_reservation" onSubmit={(event) => submitHandler(event, formData)}>
+        <div className="form-group">
+        <label htmlFor="first_name">First Name</label>
           <input
+            required
             name="first_name"
             value={formData.first_name}
-            placeholder={formData.first_name || "First Name"}
+            placeholder={"First Name"}
+            className="form-control"
             onChange={onChange}
-            required
           />
         </div>
-        <div>
+        <div className="form-group">
+        <label htmlFor="last_name">Last Name</label>
           <input
+            required
             name="last_name"
             value={formData.last_name}
-            placeholder={formData.last_name || "Last Name"}
+            placeholder={"Last Name"}
+            className="form-control"
             onChange={onChange}
-            required
           />
         </div>
-        <div>
+        <div 
+        className="form-group"
+        >
+        <label htmlFor="mobile_number">Mobile Number</label>
           <input
+            required
             type="string"
             name="mobile_number"
             value={formData.mobile_number}
-            placeholder={formData.mobile_number || "Mobile Number"}
+            placeholder={"Mobile Number"}
+            className="form-control"
             onChange={onChange}
-            required
           />
         </div>
-        <div>
+        <div className="form-group">
+        <label htmlFor="reservation_date">Date</label>
           <input
+            required
+            name="reservation_date"
+            type="date"
+            value={formData.reservation_date}
+            className="form-control"
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+        <label htmlFor="reservation_time">Time</label>
+          <input
+            required
+            type="time"
+            name="reservation_time"
+            value={formData.reservation_time}
+            className="form-control"
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+        <label htmlFor="people">Number of People</label>
+          <input
+            required
             type="number"
             name="people"
             value={formData.people}
             placeholder="Party Size"
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div>
-          <input
-            name="reservation_date"
-            type="date"
-            value={formData.reservation_date}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <input
-            type="time"
-            name="reservation_time"
-            value={formData.reservation_time}
+            className="form-control"
             onChange={onChange}
           />
         </div>
         <ErrorAlert error={errors} />
-        <button type="submit">Submit</button>
+        <button type="submit" 
+        className="btn btn-primary"
+        >Submit</button>
 
         <button
           data-reservation-id-cancel={formData.reservation_id}
           type="button"
+          className="btn btn-secondary ml-1"
           onClick={() => {
             history.go("-1");
           }}
@@ -97,6 +118,6 @@ export default function FormComponent({
           Cancel
         </button>
       </form>
-    </>
+    </div>
   );
 }

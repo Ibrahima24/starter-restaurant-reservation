@@ -25,21 +25,33 @@ export default function SearchComponent(){
   };
 
   return (
-    <>
-    <form
+    <div>
+    <form className="mt-2" name="search_for_number"
     onSubmit={submitHandler}
     >
-      <label>Mobile Number</label> 
+    <label html>
+      <h2>Search by Mobile Number</h2>
+    </label>
+    <div className="row">
+      <div className="col-lg-8 col-sm-6 col-xs-8">
       <input onChange={onChange} 
       type="search" 
       name="mobile_number" 
+      className="form-control"
       placeholder="Enter a customer's phone number" 
-      required></input> <button type="submit">Find</button>
+      required />
+      </div>
+      <div className="col-lg-4 col-sm-6 col-xs-4 mt-1">
+    <button type="submit" className="btn btn-primary">
+      Find
+    </button>
+    </div>
+    </div>
     </form>
-    <div>
+    <div className="mt-4">
     {reservations.length !== 0 ? <ReservationsComponent reservations={reservations}/> : null}  
     {searched === true && reservations.length === 0 ? `No reservations found with this phone number` : null}
     </div>
-    </>
+    </div>
   )
 }
