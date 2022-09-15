@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import FormComponent from "../formComponent/FormComponent";
-import { updateResStatus, editRes } from "../utils/api";
+import { updateRes, editRes } from "../utils/api";
 
 export default function EditReservationsComponent() {
-    const params = useParams();
     const history = useHistory();
+    const params = useParams();
     const [newReservation, setNewReservation] = useState({
       first_name: "",
       last_name: "",
@@ -30,7 +30,7 @@ export default function EditReservationsComponent() {
     const submitHandler = (event, newReservation) => {
       event.preventDefault();
       newReservation.people = Number(newReservation.people);
-      updateResStatus(newReservation, params.reservation_id)
+      updateRes(params.reservation_id, newReservation)
         .then(() =>
           history.push(`/dashboard/?date=${newReservation.reservation_date}`)
         )

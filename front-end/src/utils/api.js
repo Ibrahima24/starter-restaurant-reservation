@@ -126,6 +126,17 @@ export async function updateResStatus( reservation_Id, signal) {
   let result = await fetchJson(url, options, {});
   return result
 }
+export async function updateRes( reservation_Id, newReservation, signal) {
+  const url = `${API_BASE_URL}/reservations/${reservation_Id}`;
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: newReservation }),
+    signal,
+  };
+  let result = await fetchJson(url, options, {});
+  return result
+}
 
 export async function editRes( resId, signal ) {
   const url = new URL(`${API_BASE_URL}/reservations/${resId}`);

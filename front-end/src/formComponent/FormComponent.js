@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { formatAsDate } from "../utils/date-time";
 
 export default function FormComponent({
-  submitHandler,
-  newReservation,
   errors,
+  newReservation,
+  submitHandler,
 }) {
    
-  const history = useHistory();
   const [formData, setFormData] = useState(newReservation);
+  const history = useHistory();
 
   useEffect(() => {
     setFormData({
@@ -21,7 +21,7 @@ export default function FormComponent({
     });
   }, [newReservation]);
 
-  const handleChange = (event) => {
+  const onChange = (event) => {
     const { target } = event;
     const value = target.value;
     setFormData({ ...formData, [target.name]: value });
@@ -29,13 +29,13 @@ export default function FormComponent({
 
   return (
     <>
-      <form onSubmit={(e) => submitHandler(e, formData)}>
+      <form onSubmit={(event) => submitHandler(event, formData)}>
         <div>
           <input
             name="first_name"
             value={formData.first_name}
             placeholder={formData.first_name || "First Name"}
-            onChange={handleChange}
+            onChange={onChange}
             required
           />
         </div>
@@ -44,7 +44,7 @@ export default function FormComponent({
             name="last_name"
             value={formData.last_name}
             placeholder={formData.last_name || "Last Name"}
-            onChange={handleChange}
+            onChange={onChange}
             required
           />
         </div>
@@ -54,7 +54,7 @@ export default function FormComponent({
             name="mobile_number"
             value={formData.mobile_number}
             placeholder={formData.mobile_number || "Mobile Number"}
-            onChange={handleChange}
+            onChange={onChange}
             required
           />
         </div>
@@ -64,7 +64,7 @@ export default function FormComponent({
             name="people"
             value={formData.people}
             placeholder="Party Size"
-            onChange={handleChange}
+            onChange={onChange}
             required
           />
         </div>
@@ -73,7 +73,7 @@ export default function FormComponent({
             name="reservation_date"
             type="date"
             value={formData.reservation_date}
-            onChange={handleChange}
+            onChange={onChange}
           />
         </div>
         <div>
@@ -81,7 +81,7 @@ export default function FormComponent({
             type="time"
             name="reservation_time"
             value={formData.reservation_time}
-            onChange={handleChange}
+            onChange={onChange}
           />
         </div>
         <ErrorAlert error={errors} />

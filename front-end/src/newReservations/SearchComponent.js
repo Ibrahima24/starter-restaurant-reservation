@@ -2,12 +2,13 @@ import { useState } from "react";
 import {  listReservations } from "../utils/api";
 import ReservationsComponent from "../dashboard/ReservationsComponent";
 
-export default function SearchComponent(){  
-  const [formData, setFormData] = useState({})
-  const [reservations, setReservations] = useState([])
+export default function SearchComponent(){
   const [searched, setSearched] = useState(false)
+  const [reservations, setReservations] = useState([])  
+  const [formData, setFormData] = useState({})
+  
 
-  const handleChange = (event) => {
+  const onChange = (event) => {
     const { target } = event;
     const value = target.value;
     setFormData({ ...formData, [target.name]: value });
@@ -29,7 +30,7 @@ export default function SearchComponent(){
     onSubmit={submitHandler}
     >
       <label>Mobile Number</label> 
-      <input onChange={handleChange} 
+      <input onChange={onChange} 
       type="search" 
       name="mobile_number" 
       placeholder="Enter a customer's phone number" 

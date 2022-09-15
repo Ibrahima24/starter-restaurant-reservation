@@ -174,14 +174,14 @@ describe("US-08 - Change an existing reservation - E2E", () => {
     });
 
     test("filling and submitting form updates the reservation", async () => {
-      const firstNameInput = await page.$("input[name=first_name]");
-      await firstNameInput.click({ clickCount: 3 });
-      await firstNameInput.type("John");
+      const firstNameInput = await page.$("input[name=first_name]"); console.log("177")
+      await firstNameInput.click({ clickCount: 3 });console.log("178")
+      await firstNameInput.type("John");console.log("179")
 
       const [submitButton] = await page.$x(
         "//button[contains(translate(., 'ACDEFGHIJKLMNOPQRSTUVWXYZ', 'acdefghijklmnopqrstuvwxyz'), 'submit')]"
       );
-
+      console.log("184")
       if (!submitButton) {
         throw new Error("button containing submit not found.");
       }
@@ -190,19 +190,19 @@ describe("US-08 - Change an existing reservation - E2E", () => {
         path: ".screenshots/us-08-edit-reservation-submit-before.png",
         fullPage: true,
       });
-
+      console.log("193")
       await Promise.all([
         submitButton.click(),
         page.waitForNavigation({ waitUntil: "networkidle0" }),
       ]);
-
+      console.log("198")
       expect(page.url()).toContain("/dashboard");
 
       await page.screenshot({
         path: ".screenshots/us-08-edit-reservation-submit-after.png",
         fullPage: true,
       });
-
+      console.log("205")
       await expect(page).toMatch(/John/);
     });
   });
