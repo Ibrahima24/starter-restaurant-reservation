@@ -22,13 +22,11 @@ let reservation_id = params.reservation_id;
       return () => abortController.abort();
     }
 
-    const tablesForm = tables.map((table, index) => {
+    const tablesForm = tables.map((table) => {
         return (
-            <>
-            <option key={index} value={table.table_id}>
+            <option key={table.table_id} value={table.table_id}>
             {table.table_name} - {table.capacity}
             </option>
-            </>
         )
     })
 
@@ -56,6 +54,7 @@ let reservation_id = params.reservation_id;
         <div className="form-group">
         <label htmlFor="table_id">Table number:</label>
             <select className="ml-2 form-control w-50" required name="table_id" onChange={onChange}>
+                <option>Select a Table</option>
                 {tablesForm}
             </select>
         </div>

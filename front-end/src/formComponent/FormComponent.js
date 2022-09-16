@@ -1,43 +1,32 @@
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
-import { formatAsDate } from "../utils/date-time";
 
 export default function FormComponent({
   errors,
   newReservation,
+  setNewReservation,
   submitHandler,
+  title
 }) {
-   
-  const history = useHistory();
-  const [formData, setFormData] = useState(newReservation);
   
-
-  useEffect(() => {
-    setFormData({
-      ...newReservation,
-      reservation_date: newReservation.reservation_date
-        ? formatAsDate(newReservation.reservation_date)
-        : "",
-    });
-  }, [newReservation]);
+  const history = useHistory();
 
   const onChange = (event) => {
     const { target } = event;
     const value = target.value;
-    setFormData({ ...formData, [target.name]: value });
+    setNewReservation({ ...newReservation, [target.name]: value });
   };
 
   return (
     <div>
-      <h2>Edit Your Table</h2>
-      <form name="edit_reservation" onSubmit={(event) => submitHandler(event, formData)}>
+      <h2>{title}</h2>
+      <form onSubmit={(event) => submitHandler(event, newReservation)}>
         <div className="form-group">
         <label htmlFor="first_name">First Name</label>
           <input
             required
             name="first_name"
-            value={formData.first_name}
+            value={newReservation.first_name}
             placeholder={"First Name"}
             className="form-control"
             onChange={onChange}
@@ -48,7 +37,7 @@ export default function FormComponent({
           <input
             required
             name="last_name"
-            value={formData.last_name}
+            value={newReservation.last_name}
             placeholder={"Last Name"}
             className="form-control"
             onChange={onChange}
@@ -62,7 +51,7 @@ export default function FormComponent({
             required
             type="string"
             name="mobile_number"
-            value={formData.mobile_number}
+            value={newReservation.mobile_number}
             placeholder={"Mobile Number"}
             className="form-control"
             onChange={onChange}
@@ -74,7 +63,7 @@ export default function FormComponent({
             required
             name="reservation_date"
             type="date"
-            value={formData.reservation_date}
+            value={newReservation.reservation_date}
             className="form-control"
             onChange={onChange}
           />
@@ -85,7 +74,7 @@ export default function FormComponent({
             required
             type="time"
             name="reservation_time"
-            value={formData.reservation_time}
+            value={newReservation.reservation_time}
             className="form-control"
             onChange={onChange}
           />
@@ -96,7 +85,7 @@ export default function FormComponent({
             required
             type="number"
             name="people"
-            value={formData.people}
+            value={newReservation.people}
             placeholder="Party Size"
             className="form-control"
             onChange={onChange}
@@ -108,7 +97,7 @@ export default function FormComponent({
         >Submit</button>
 
         <button
-          data-reservation-id-cancel={formData.reservation_id}
+          data-reservation-id-cancel={newReservation.reservation_id}
           type="button"
           className="btn btn-secondary ml-1"
           onClick={() => {

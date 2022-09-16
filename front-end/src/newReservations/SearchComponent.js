@@ -29,7 +29,7 @@ export default function SearchComponent(){
     <form className="mt-2" name="search_for_number"
     onSubmit={submitHandler}
     >
-    <label html>
+    <label>
       <h2>Search by Mobile Number</h2>
     </label>
     <div className="row">

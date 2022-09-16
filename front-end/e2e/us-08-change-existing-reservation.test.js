@@ -204,6 +204,7 @@ describe("US-08 - Change an existing reservation - E2E", () => {
       });
       
       await expect(page).toMatch(/John/);
+      
     });
   });
 });
