@@ -38,16 +38,16 @@ if (typeof request.body.data.people !== "number") {
   return next({ status: 400, message: "'people' field must be a number" });
 }
 
-if (request.body.data.mobile_number.includes('/[a-zA-Z]/') ) {
-  return next({ status: 400, message: "'Mobile Number' field must be a number" });
-}
-
 if (request.body.data.people < 1) {
   return next({ status: 400, message: "'people' field must be at least 1" });
 }
 
 if (request.body.data.status && request.body.data.status !== "booked") {
   return next({ status: 400, message: `'status' field cannot be ${request.body.data.status}`,  });
+}
+
+if (/\d+\-?/.test(request.body.data.mobile_number) === false ) {
+  return next({ status: 400, message: "'Mobile Number' field must be a number" });
 }
 
 next();
@@ -166,8 +166,8 @@ module.exports = {
   list: asyncErrorBoundary(list),
   create: [
     asyncErrorBoundary(validateData),
-    asyncErrorBoundary(validateBody),
     asyncErrorBoundary(validateDate),
+    asyncErrorBoundary(validateBody),
     asyncErrorBoundary(create),
   ],
   update: [

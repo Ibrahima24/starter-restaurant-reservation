@@ -50,7 +50,6 @@ export default function FormComponent({
           <input
             required
             type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="mobile_number"
             value={newReservation.mobile_number}
             placeholder="xxx-xxx-xxxx"
