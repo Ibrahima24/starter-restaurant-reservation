@@ -49,10 +49,11 @@ export default function FormComponent({
         <label htmlFor="mobile_number">Mobile Number</label>
           <input
             required
-            type="string"
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="mobile_number"
             value={newReservation.mobile_number}
-            placeholder={"Mobile Number"}
+            placeholder="xxx-xxx-xxxx"
             className="form-control"
             onChange={onChange}
           />
