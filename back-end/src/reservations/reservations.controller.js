@@ -46,7 +46,7 @@ if (request.body.data.status && request.body.data.status !== "booked") {
   return next({ status: 400, message: `'status' field cannot be ${request.body.data.status}`,  });
 }
 
-if (/\d+\-?/.test(request.body.data.mobile_number) === false ) {
+if (/^[0-9\-]+$/.test(request.body.data.mobile_number) === false ) {
   return next({ status: 400, message: "'Mobile Number' field must be a number" });
 }
 
